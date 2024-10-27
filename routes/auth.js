@@ -3,9 +3,9 @@ const axios = require('axios');
 const crypto = require('crypto');
 const router = express.Router();
 
-const GITHUB_TOKEN = 'your_github_token'; // Add your GitHub token here
-const GITHUB_REPO = 'your_github_repo';
-const GITHUB_USER = 'your_github_username';
+const GITHUB_TOKEN = ${{ secrets.GITHUB_TOKEN }};
+const GITHUB_REPO = 'roblox-remake';
+const GITHUB_USER = 'softbf395';
 
 // Hashes password using SHA-256
 function hashPassword(password) {
@@ -48,7 +48,7 @@ async function createUser(username, password) {
 }
 
 // Sign-Up Route
-router.post('/signup', async (req, res) => {
+router.post('/public/SignUp', async (req, res) => {
     const { username, password } = req.body;
 
     // Check if the user already exists
@@ -63,7 +63,7 @@ router.post('/signup', async (req, res) => {
 });
 
 // Sign-In Route
-router.post('/signin', async (req, res) => {
+router.post('/public/SignIn', async (req, res) => {
     const { username, password } = req.body;
 
     // Check if the user exists

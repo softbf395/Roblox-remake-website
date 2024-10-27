@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Dashboard</h1>
+    <div id="profile">
+        <h2>Your Profile</h2>
+        <p id="username">Username: Loading...</p>
+        <p id="isAdmin">Admin: Loading...</p>
+    </div>
+    
+    <div id="games">
+        <h2>Your Games</h2>
+        <ul id="gamesList">
+            Loading your games...
+        </ul>
+    </div>
 
+    <script>
+        async function loadDashboard() {
+            const response = await fetch('/pages/homeData');
+            const data = await response.json();
+            
+            document.getElementById('username').textContent = `Username: ${data.user.username}`;
+            document.getElementById('isAdmin').textContent = `Admin: ${data.user.isadmin ? 'Yes' : 'No'}`;
+
+            const gamesList = document.getElementById('gamesList');
+            gamesList.innerHTML = '';
+            if (data.games.length > 0) {
+                data.games.forEach(game => {
+                    const li = document.createElement('li');
+                    li.textContent = `${game.name} (ID: ${game.id})`;
+                    gamesList.appendChild(li);
+                });
+            } else {
+                gamesList.textContent = 'No games found';
+            }
+        }
+
+        loadDashboard();
+    </script>
+</body>
+</html>

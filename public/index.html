@@ -6,17 +6,17 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Welcome to the Dashboard</h1>
+    <h1>Welcome to RBXRemake!</h1>
     <div id="profile">
         <h2>Your Profile</h2>
         <p id="username">Username: Loading...</p>
-        <p id="isAdmin">Admin: Loading...</p>
+        <p id="isAdmin">RBXRemake Admin?: Loading...</p>
     </div>
     
     <div id="games">
-        <h2>Your Games</h2>
+        <h2>Games</h2>
         <ul id="gamesList">
-            Loading your games...
+            Loading recent games...
         </ul>
     </div>
 
@@ -26,7 +26,7 @@
             const data = await response.json();
             
             document.getElementById('username').textContent = `Username: ${data.user.username}`;
-            document.getElementById('isAdmin').textContent = `Admin: ${data.user.isadmin ? 'Yes' : 'No'}`;
+            document.getElementById('isAdmin').textContent = `is RBXRemake Admin?: ${data.user.isadmin ? 'Yes' : 'No'}`;
 
             const gamesList = document.getElementById('gamesList');
             gamesList.innerHTML = '';
@@ -37,7 +37,7 @@
                     gamesList.appendChild(li);
                 });
             } else {
-                gamesList.textContent = 'No games found';
+                gamesList.textContent = 'No games found, search for and play games!';
             }
         }
 
